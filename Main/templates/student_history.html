@@ -1,1 +1,25 @@
+{% extends "base.html" %}
 
+{% block content %}
+
+<h2>Placement History</h2>
+
+<table class="table">
+
+<tr>
+<th>Drive</th>
+<th>Status</th>
+</tr>
+
+{% for a in apps %}
+
+<tr>
+<td>{{ a.drive_id }}</td>
+<td>{{ a.status }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
