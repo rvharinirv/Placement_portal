@@ -13,6 +13,15 @@
 <th>Website</th>
 <th>Status</th>
 </tr>
+<form method="GET" action="/admin/search_companies">
+
+<input type="text" name="q" placeholder="Search company">
+
+<button class="btn btn-primary btn-sm">
+Search
+</button>
+
+</form>
 
 {% for c in companies %}
 
@@ -27,5 +36,6 @@
 {% endfor %}
 
 </table>
+
 
 {% endblock %}
