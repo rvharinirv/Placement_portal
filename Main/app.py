@@ -33,11 +33,20 @@ login_manager.login_view = "login"
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@app.route("/company/update_status/<int:app_id>/<status>")
-def update_status(app_id, status):
-    app = Application.query.get(app_id)
-    app.status = status
+@app.route("/company/update_application/<int:id>/<status>")
+@login_required
+def update_application(id, status):
+
+    application = Application.query.get_or_404(id)
+
+    application.status = status
+
     db.session.commit()
+
+    flash("Application status updated")
+
+    return redirect(request.referrer)
+
 @app.route("/admin/search_companies")
 @login_required
 def search_companies():
@@ -55,6 +64,7 @@ def search_companies():
         "admin_companies.html",
         companies=companies
     )
+
 @app.route("/admin/search_students")
 @login_required
 def search_students():
@@ -478,3 +488,4 @@ def apply(drive_id):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
