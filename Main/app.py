@@ -70,6 +70,28 @@ def search_companies():
         companies=companies
     )
 
+@app.route("/student/upload_resume", methods=["POST"])
+@login_required
+def upload_resume():
+
+    student = Student.query.filter_by(user_id=current_user.id).first()
+
+    file = request.files["resume"]
+
+    filename = secure_filename(file.filename)
+
+    path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+
+    file.save(path)
+
+    student.resume = filename
+
+    db.session.commit()
+
+    flash("Resume uploaded")
+
+    return redirect(url_for("dashboard"))
+
 @app.route("/admin/search_students")
 @login_required
 def search_students():
@@ -493,5 +515,6 @@ def apply(drive_id):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
