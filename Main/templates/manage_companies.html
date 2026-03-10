@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Company Approvals</h2>
+
+<table class="table table-bordered">
+
+<tr>
+<th>ID</th>
+<th>Company</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for company in companies %}
+
+<tr>
+
+<td>{{ company.id }}</td>
+<td>{{ company.company_name }}</td>
+<td>{{ company.approval_status }}</td>
+
+
+<td>
+{% if company.approval_status == "Kicked" %}
+<a href="/admin/approve_company/{{ company.id }}" class="btn btn-success btn-sm">
+Approve
+</a>
+
+<a href="/admin/reject_company/{{ company.id }}" class="btn btn-danger btn-sm">
+Reject
+</a>
+
+{% elif company.approval_status == "Pending" %}
+
+<a href="/admin/approve_company/{{ company.id }}" class="btn btn-success btn-sm">
+Approve
+</a>
+
+<a href="/admin/reject_company/{{ company.id }}" class="btn btn-danger btn-sm">
+Reject
+</a>
+
+{% elif company.approval_status == "Approved"%}
+
+<a href="{{ url_for('kick_company', id=company.id) }}" class="btn btn-warning btn-sm">
+Kick
+</a>
+
+{% else %}
+<a href="/admin/approve_company/{{ company.id }}" class="btn btn-success btn-sm">
+Approve
+</a>
+
+
+{% endif %}
+
+
+</td>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

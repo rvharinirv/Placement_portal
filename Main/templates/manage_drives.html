@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Placement Drives</h2>
+
+<table class="table table-striped">
+
+<tr>
+<th>ID</th>
+<th>Job Title</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for drive in drives %}
+
+<tr>
+
+<td>{{ drive.id }}</td>
+<td>{{ drive.job_title }}</td>
+<td>{{ drive.status }}</td>
+
+<td>
+
+<a href="/admin/approve_drive/{{ drive.id }}" class="btn btn-success btn-sm">
+Approve
+</a>
+
+<a href="/admin/reject_drive/{{ drive.id }}" class="btn btn-danger btn-sm">
+Reject
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

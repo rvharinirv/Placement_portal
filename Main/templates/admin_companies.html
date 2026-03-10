@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>All Companies</h2>
+
+<table class="table table-striped">
+
+<tr>
+<th>ID</th>
+<th>Company Name</th>
+<th>HR Contact</th>
+<th>Website</th>
+<th>Status</th>
+</tr>
+
+{% for c in companies %}
+
+<tr>
+<td>{{ c.id }}</td>
+<td>{{ c.company_name }}</td>
+<td>{{ c.hr_contact }}</td>
+<td>{{ c.website }}</td>
+<td>{{ c.approval_status }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

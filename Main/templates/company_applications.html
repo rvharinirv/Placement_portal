@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Student Applications</h2>
+
+<table class="table table-bordered">
+
+<tr>
+<th>Name</th>
+<th>Roll Number</th>
+<th>Course</th>
+<th>CGPA</th>
+<th>Status</th>
+</tr>
+
+{% for s in students %}
+
+<tr>
+<td>{{ s.name }}</td>
+<td>{{ s.roll }}</td>
+<td>{{ s.course }}</td>
+<td>{{ s.cgpa }}</td>
+<td>{{ s.status }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

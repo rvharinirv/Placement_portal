@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>All Placement Drives</h2>
+
+<table class="table table-bordered">
+
+<tr>
+<th>ID</th>
+<th>Company ID</th>
+<th>Job Title</th>
+<th>Eligibility</th>
+<th>Deadline</th>
+<th>Status</th>
+</tr>
+
+{% for d in drives %}
+
+<tr>
+<td>{{ d.id }}</td>
+<td>{{ d.company_id }}</td>
+<td>{{ d.job_title }}</td>
+<td>{{ d.eligibility }}</td>
+<td>{{ d.deadline }}</td>
+<td>{{ d.status }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

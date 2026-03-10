@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Company Dashboard</h2>
+
+<a href="/company/create_drive" class="btn btn-primary mb-3">
+Create Placement Drive
+</a>
+
+<table class="table table-bordered">
+
+<tr>
+<th>ID</th>
+<th>Job Title</th>
+<th>Status</th>
+</tr>
+
+{% for drive in drives %}
+
+<tr>
+
+<td>{{ drive.id }}</td>
+<td>{{ drive.job_title }}</td>
+<td>{{ drive.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

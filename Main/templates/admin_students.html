@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>All Students</h2>
+
+<table class="table table-bordered">
+
+<tr>
+<th>ID</th>
+<th>Roll Number</th>
+<th>Name</th>
+<th>Course</th>
+<th>CGPA</th>
+</tr>
+
+{% for s in students %}
+
+<tr>
+<td>{{ s.id }}</td>
+<td>{{ s.roll_number }}</td>
+<td>{{s.name}}</td>
+<td>{{ s.course }}</td>
+<td>{{ s.cgpa }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
