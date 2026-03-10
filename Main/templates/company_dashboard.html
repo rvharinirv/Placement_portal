@@ -1,23 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-drives = PlacementDrive.query.filter_by(company_id=company.id).all()
-
-drive_data = []
-
-for drive in drives:
-
-    count = Application.query.filter_by(drive_id=drive.id).count()
-
-    drive_data.append({
-        "drive": drive,
-        "count": count
-    })
-
-return render_template(
-    "company_dashboard.html",
-    drives=drive_data
-)
 
 <h2>Company Dashboard</h2>
 
@@ -26,7 +9,23 @@ Create Placement Drive
 </a>
 
 <table class="table table-bordered">
+<tr>
+<th>Job Title</th>
+<th>Status</th>
+<th>Applicants</th>
+</tr>
 
+{% for d in drives %}
+
+<tr>
+
+<td>{{ d.drive.job_title }}</td>
+<td>{{ d.drive.status }}</td>
+<td>{{ d.count }}</td>
+
+</tr>
+
+{% endfor %}
 <tr>
 <th>ID</th>
 <th>Job Title</th>
@@ -49,3 +48,4 @@ Create Placement Drive
 
 
 {% endblock %}
+
