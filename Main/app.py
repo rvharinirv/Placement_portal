@@ -4,7 +4,12 @@ from models import db, User, Student, Company, PlacementDrive, Application
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+import os
+from werkzeug.utils import secure_filename
 
+UPLOAD_FOLDER = "static/uploads"
+
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -488,4 +493,5 @@ def apply(drive_id):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
