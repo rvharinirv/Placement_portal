@@ -3,6 +3,17 @@
 {% block content %}
 
 <h2>Student Dashboard</h2>
+<h4>Upload Resume</h4>
+
+<form method="POST" action="/student/upload_resume" enctype="multipart/form-data">
+
+<input type="file" name="resume">
+
+<button class="btn btn-primary btn-sm">
+Upload
+</button>
+
+</form>
 
 <h4>Available Placement Drives</h4>
 
@@ -56,5 +67,6 @@ Apply
 {% endfor %}
 
 </table>
+
 
 {% endblock %}
