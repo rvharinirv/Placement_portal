@@ -38,6 +38,35 @@ login_manager.login_view = "login"
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
+@app.route("/student/history")
+@login_required
+def student_history():
+
+    student = Student.query.filter_by(user_id=current_user.id).first()
+
+    apps = Application.query.filter_by(student_id=student.id).all()
+
+    return render_template(
+        "student_history.html",
+        apps=apps
+    )
+    
+@app.route("/company/close_drive/<int:id>")
+@login_required
+def close_drive(id):
+
+    drive = PlacementDrive.query.get_or_404(id)
+
+    drive.status = "Closed"
+
+    db.session.commit()
+
+    flash("Drive closed")
+
+    return redirect(url_for("dashboard"))
+
+
 @app.route("/company/update_application/<int:id>/<status>")
 @login_required
 def update_application(id, status):
@@ -524,6 +553,7 @@ def apply(drive_id):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
