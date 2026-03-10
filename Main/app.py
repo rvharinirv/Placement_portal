@@ -275,14 +275,23 @@ def dashboard():
 
     elif current_user.role == "company":
 
-        company = Company.query.filter_by(user_id=current_user.id).first()
-
         drives = PlacementDrive.query.filter_by(company_id=company.id).all()
+
+        drive_data = []
+
+        for drive in drives:
+
+            count = Application.query.filter_by(drive_id=drive.id).count()
+
+            drive_data.append({
+           "drive": drive,
+            "count": count
+           })
 
         return render_template(
             "company_dashboard.html",
-            drives=drives
-        )
+            drives=drive_data
+)
 
 
 # ---------------- ADMIN COMPANY MANAGEMENT ----------------
@@ -515,6 +524,7 @@ def apply(drive_id):
 if __name__ == "__main__":
 
     app.run(debug=True)
+
 
 
 
