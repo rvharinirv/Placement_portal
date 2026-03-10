@@ -14,7 +14,26 @@
 <th>Status</th>
 <th>Action</th>
 </tr>
+<td>{{ s.status }}</td>
 
+<td>
+
+<a href="/company/update_application/{{ s.id }}/Shortlisted"
+class="btn btn-warning btn-sm">
+Shortlist
+</a>
+
+<a href="/company/update_application/{{ s.id }}/Selected"
+class="btn btn-success btn-sm">
+Select
+</a>
+
+<a href="/company/update_application/{{ s.id }}/Rejected"
+class="btn btn-danger btn-sm">
+Reject
+</a>
+
+</td>
 {% for s in students %}
 
 <tr>
@@ -31,3 +50,4 @@
 
 
 {% endblock %}
+
