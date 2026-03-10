@@ -3,6 +3,10 @@
 {% block content %}
 
 <h2>Company Dashboard</h2>
+<a href="/company/close_drive/{{ d.drive.id }}"
+class="btn btn-danger btn-sm">
+Close Drive
+</a>
 
 <a href="/company/create_drive" class="btn btn-primary mb-3">
 Create Placement Drive
@@ -48,4 +52,5 @@ Create Placement Drive
 
 
 {% endblock %}
+
 
