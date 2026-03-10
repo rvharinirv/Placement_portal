@@ -13,7 +13,15 @@
 <th>Course</th>
 <th>CGPA</th>
 </tr>
+<form method="GET" action="/admin/search_students">
 
+<input type="text" name="q" placeholder="Search student">
+
+<button class="btn btn-primary btn-sm">
+Search
+</button>
+
+</form>
 {% for s in students %}
 
 <tr>
@@ -27,5 +35,6 @@
 {% endfor %}
 
 </table>
+
 
 {% endblock %}
