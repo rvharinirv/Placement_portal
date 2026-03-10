@@ -33,7 +33,45 @@ login_manager.login_view = "login"
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+@app.route("/company/update_status/<int:app_id>/<status>")
+def update_status(app_id, status):
+    app = Application.query.get(app_id)
+    app.status = status
+    db.session.commit()
+@app.route("/admin/search_companies")
+@login_required
+def search_companies():
 
+    query = request.args.get("q")
+
+    companies = []
+
+    if query:
+        companies = Company.query.filter(
+            Company.company_name.contains(query)
+        ).all()
+
+    return render_template(
+        "admin_companies.html",
+        companies=companies
+    )
+@app.route("/admin/search_students")
+@login_required
+def search_students():
+
+    query = request.args.get("q")
+
+    students = []
+
+    if query:
+        students = Student.query.filter(
+            Student.roll_number.contains(query)
+        ).all()
+
+    return render_template(
+        "admin_students.html",
+        students=students
+    )
 # ---------------- CREATE DATABASE ----------------
 
 with app.app_context():
@@ -438,4 +476,5 @@ def apply(drive_id):
 # ---------------- RUN APP ----------------
 
 if __name__ == "__main__":
+
     app.run(debug=True)
